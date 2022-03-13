@@ -1,0 +1,228 @@
+package com.ncwdmods.redlodgemod.init;
+
+import java.util.function.Supplier;
+
+import com.ncwdmods.redlodgemod.RedLodgeMod;
+import com.ncwdmods.redlodgemod.RedLodgeMod.RedLodgeItemGroup;
+
+import net.minecraft.inventory.EquipmentSlotType;
+import net.minecraft.item.ArmorItem;
+import net.minecraft.item.Food;
+import net.minecraft.item.IArmorMaterial;
+import net.minecraft.item.IItemTier;
+import net.minecraft.item.Item;
+import net.minecraft.item.SwordItem;
+import net.minecraft.item.crafting.Ingredient;
+import net.minecraft.potion.EffectInstance;
+import net.minecraft.potion.Effects;
+import net.minecraft.util.LazyValue;
+import net.minecraft.util.SoundEvent;
+import net.minecraft.util.SoundEvents;
+import net.minecraftforge.event.RegistryEvent;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.common.Mod.EventBusSubscriber.Bus;
+import net.minecraftforge.registries.ObjectHolder;
+
+@Mod.EventBusSubscriber(modid = RedLodgeMod.MOD_ID, bus = Bus.MOD)
+@ObjectHolder(RedLodgeMod.MOD_ID)
+public class ItemInit {
+	//Items
+	public static final Item pop_card = null;
+	public static final Item redlodge_ticket = null;
+	//Pop
+	public static final Item pop_mountain_dew = null;
+	public static final Item la_croix = null;
+	public static final Item pop_sprite = null;
+	public static final Item water_milk = null;
+	public static final Item pop_coke_regular = null; public static final Item pop_coke_orange = null; public static final Item pop_coke_cherry = null; public static final Item pop_coke_vanilla = null;
+	public static final Item pop_doctor_pepper = null;
+	public static final Item pop_root_beer = null;
+	//Food
+	public static final Item bannock = null; //slowness and regen
+	//implement these
+	/*
+	public static final Item beef_stroganoff = null;
+	public static final Item sweet_and_sour_chicken = null;
+	public static final Item teriyaki_noodles = null;
+	public static final Item chicken_dumplings = null;
+	public static final Item chili_mac = null;
+	public static final Item chicken_alfredo = null;
+	public static final Item mac_and_cheese = null;
+	public static final Item mac_and_cock = null;
+	*/
+	
+	//Tools
+	public static final Item pop_sword = null;
+	
+	//Armor
+	public static final Item pop_helmet = null;
+	public static final Item pop_chestplate = null;
+	public static final Item pop_leggings = null;
+	public static final Item pop_boots = null;
+	
+	@SuppressWarnings("deprecation")
+	@SubscribeEvent
+	public static void registerItems(final RegistryEvent.Register<Item> event) 
+	{
+		//Items
+		event.getRegistry().register(new Item(new Item.Properties().group(RedLodgeItemGroup.instance)).setRegistryName("pop_card"));
+		event.getRegistry().register(new Item(new Item.Properties().group(RedLodgeItemGroup.instance)).setRegistryName("redlodge_ticket"));
+		//Food
+		event.getRegistry().register(new Item(new Item.Properties().group(RedLodgeItemGroup.instance).food(new Food.Builder().hunger(2).saturation(.03f).setAlwaysEdible().effect(new EffectInstance(Effects.SPEED, 1200, 0), 1f).build())).setRegistryName("pop_mountain_dew"));
+		event.getRegistry().register(new Item(new Item.Properties().group(RedLodgeItemGroup.instance).food(new Food.Builder().hunger(1).saturation(.03f).setAlwaysEdible().effect(new EffectInstance(Effects.INSTANT_DAMAGE,20, 2), 1f).build())).setRegistryName("la_croix"));
+		event.getRegistry().register(new Item(new Item.Properties().group(RedLodgeItemGroup.instance).food(new Food.Builder().hunger(3).saturation(.03f).setAlwaysEdible().build())).setRegistryName("pop_sprite"));
+		event.getRegistry().register(new Item(new Item.Properties().group(RedLodgeItemGroup.instance).food(new Food.Builder().hunger(1).saturation(.03f).setAlwaysEdible().effect(new EffectInstance(Effects.POISON,600, 2), 1f).build())).setRegistryName("watermilk"));
+		event.getRegistry().register(new Item(new Item.Properties().group(RedLodgeItemGroup.instance).food(new Food.Builder().hunger(2).saturation(.03f).setAlwaysEdible().effect(new EffectInstance(Effects.HASTE,1200, 0), 1f).build())).setRegistryName("pop_coke_regular"));
+		event.getRegistry().register(new Item(new Item.Properties().group(RedLodgeItemGroup.instance).food(new Food.Builder().hunger(3).saturation(.03f).setAlwaysEdible().effect(new EffectInstance(Effects.HASTE,900, 0), 1f).build())).setRegistryName("pop_coke_vanilla"));
+		event.getRegistry().register(new Item(new Item.Properties().group(RedLodgeItemGroup.instance).food(new Food.Builder().hunger(1).saturation(.03f).setAlwaysEdible().effect(new EffectInstance(Effects.HASTE,2400, 0), 1f).build())).setRegistryName("pop_coke_cherry"));
+		event.getRegistry().register(new Item(new Item.Properties().group(RedLodgeItemGroup.instance).food(new Food.Builder().hunger(1).saturation(.03f).setAlwaysEdible().effect(new EffectInstance(Effects.REGENERATION,600, 2), 1f).build())).setRegistryName("pop_doctor_pepper"));
+		event.getRegistry().register(new Item(new Item.Properties().group(RedLodgeItemGroup.instance).food(new Food.Builder().hunger(3).saturation(.03f).setAlwaysEdible().effect(new EffectInstance(Effects.JUMP_BOOST,1200,0), 1f).build())).setRegistryName("pop_root_beer"));
+		event.getRegistry().register(new Item(new Item.Properties().group(RedLodgeItemGroup.instance).food(new Food.Builder().hunger(20).saturation(1.2f).effect(new EffectInstance(Effects.SLOWNESS, 600, 0), 1f).effect(new EffectInstance(Effects.REGENERATION, 300, 3), .7f).build())).setRegistryName("bannock"));
+		//Tools
+		event.getRegistry().register(new SwordItem(PopItemTier.POP, 7, 2.0f, new Item.Properties().group(RedLodgeItemGroup.instance)).setRegistryName("pop_sword"));
+		//Armor
+		event.getRegistry().register(new ArmorItem(PopArmorMaterial.POP,EquipmentSlotType.HEAD, new Item.Properties().group(RedLodgeItemGroup.instance)).setRegistryName("pop_helmet"));
+		event.getRegistry().register(new ArmorItem(PopArmorMaterial.POP,EquipmentSlotType.CHEST, new Item.Properties().group(RedLodgeItemGroup.instance)).setRegistryName("pop_chestplate"));
+		event.getRegistry().register(new ArmorItem(PopArmorMaterial.POP,EquipmentSlotType.LEGS, new Item.Properties().group(RedLodgeItemGroup.instance)).setRegistryName("pop_leggings"));
+		event.getRegistry().register(new ArmorItem(PopArmorMaterial.POP,EquipmentSlotType.FEET, new Item.Properties().group(RedLodgeItemGroup.instance)).setRegistryName("pop_boots"));
+
+	}
+	
+	public enum PopItemTier implements IItemTier
+	{		//int harvestLevel, int maxUses, float efficiency, float attackDamage, int enchantability, Supplier<Ingredients> repairMaterial
+		POP(4,200,7.0F,7.0F,20, () -> {
+			return Ingredient.fromItems(ItemInit.redlodge_ticket);
+		});
+		
+		private final int harvestLevel;
+		private final int maxUses;
+		private final float efficiency;
+		private final float attackDamage;
+		private final int enchantability;
+		private final LazyValue<Ingredient> repairMaterial;
+		
+		private PopItemTier(int harvestLevel, int maxUses, float efficiency, float attackDamage, int enchantability, Supplier<Ingredient> repairMaterial)
+		{
+			this.harvestLevel=harvestLevel;
+			this.maxUses = maxUses;
+			this.efficiency = efficiency;
+			this.attackDamage = attackDamage;
+			this.enchantability = enchantability;
+			this.repairMaterial = new LazyValue<>(repairMaterial);
+		}
+
+		@Override
+		public int getMaxUses() {
+			// TODO Auto-generated method stub
+			return this.maxUses;
+		}
+
+		@Override
+		public float getEfficiency() {
+			// TODO Auto-generated method stub
+			return this.efficiency;
+		}
+
+		@Override
+		public float getAttackDamage() {
+			// TODO Auto-generated method stub
+			return this.attackDamage;
+		}
+
+		@Override
+		public int getHarvestLevel() {
+			// TODO Auto-generated method stub
+			return this.harvestLevel;
+		}
+
+		@Override
+		public int getEnchantability() {
+			// TODO Auto-generated method stub
+			return this.enchantability;
+		}
+
+		@Override
+		public Ingredient getRepairMaterial() {
+			// TODO Auto-generated method stub
+			return this.repairMaterial.getValue();
+		}
+	}
+	public enum PopArmorMaterial implements IArmorMaterial
+	{
+		POP(RedLodgeMod.MOD_ID + ":pop",5,new int[] {7,9,11,7},20,SoundEvents.ITEM_ARMOR_EQUIP_LEATHER,6.9F, () ->{
+			return Ingredient.fromItems(ItemInit.pop_card);
+		});
+		private static final int[] MAX_DAMAGE_ARRAY = new int[] {16,16,16,16};
+		private final String name;
+		private final int maxDamageFactor;
+		private final int[] damageReductionAmountArray;
+		private final int enchantability;
+		private final SoundEvent soundEvent;
+		private final float toughness;
+		private final LazyValue<Ingredient> repairMaterial;
+
+		private PopArmorMaterial(String nameIn, int maxDamageFactorIn, int[] damageReductionAmountIn, int enchantabilityIn, SoundEvent soundEventIn, float toughnessIn, Supplier<Ingredient> repairMaterialIn){
+			this.name = nameIn;
+			this.maxDamageFactor = maxDamageFactorIn;
+			this.damageReductionAmountArray = damageReductionAmountIn;
+			this.enchantability = enchantabilityIn;
+			this.toughness = toughnessIn;
+			this.repairMaterial = new LazyValue<> (repairMaterialIn);
+		}
+
+		@Override
+		public int getDurability(EquipmentSlotType slotIn) {
+			// TODO Auto-generated method stub
+			return MAX_DAMAGE_ARRAY[slotIn.getIndex()]*this.maxDamageFactor;
+		}
+
+		@Override
+		public int getDamageReductionAmount(EquipmentSlotType slotIn) {
+			// TODO Auto-generated method stub
+			return this.damageReductionAmountArray[slotIn.getIndex()];
+		}
+
+		@Override
+		public int getEnchantability() {
+			// TODO Auto-generated method stub
+			return this.enchantability;
+		}
+
+		@Override
+		public SoundEvent getSoundEvent() {
+			// TODO Auto-generated method stub
+			return this.soundEvent;
+		}
+
+		@Override
+		public Ingredient getRepairMaterial() {
+			// TODO Auto-generated method stub
+			return this.RepairMaterial.getIndex();
+		}
+
+		@Override
+		public String getName() {
+			// TODO Auto-generated method stub
+			return null;
+		}
+
+		@Override
+		public float getToughness() {
+			// TODO Auto-generated method stub
+			return 0;
+		}
+	}
+}
+
+
+
+
+
+
+
+
+
+
+
+

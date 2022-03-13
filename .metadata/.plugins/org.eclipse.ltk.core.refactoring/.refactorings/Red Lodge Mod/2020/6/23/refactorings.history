@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Copy element &apos;kooch_campfire.json&apos; to &apos;Red Lodge Mod/src/main/resources/assets.redlodgemod.models.block&apos;&#x0D;&#x0A;- Original project: &apos;Red Lodge Mod&apos;&#x0D;&#x0A;- Destination element: &apos;Red Lodge Mod/src/main/resources/assets.redlodgemod.models.block&apos;&#x0D;&#x0A;- Original element: &apos;kooch_campfire.json&apos;" description="Copy file" destination="/src\/main\/resources=/gradle_scope=/main=/=/gradle_used_by_scope=/main,test=/=/org.eclipse.jdt.launching.CLASSPATH_ATTR_LIBRARY_PATH_ENTRY=/C:\\Users\\Nick\\Desktop\\Red Lodge Mod\\build\\natives=/&lt;assets.redlodgemod.models.block" element1="src/main/resources/assets/redlodgemod/models/block/kooch_campfire.json" files="1" flags="589830" folders="0" id="org.eclipse.jdt.ui.copy" policy="org.eclipse.jdt.ui.copyResources" stamp="1591461534325" units="0" version="1.0"/>
+</session>
